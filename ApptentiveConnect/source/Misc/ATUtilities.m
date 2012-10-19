@@ -540,6 +540,21 @@ static NSDateFormatter *dateFormatter = nil;
 		return buildNumberString;
 	}
 }
+
++ (BOOL)emailAddressIsValid:(NSString *)emailAddress {
+	NSError *error = nil;
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\s*.+@.+\\.[A-Za-z]{2,}\\s*" options:NSRegularExpressionCaseInsensitive error:&error];
+	if (!regex) {
+		NSLog(@"Unable to build email regular expression: %@", error);
+		return NO;
+	}
+	NSUInteger count = [regex numberOfMatchesInString:emailAddress options:NSMatchingAnchored range:NSMakeRange(0, [emailAddress length])];
+	if (count == 0) {
+		return NO;
+	} else {
+		return YES;
+	}
+}
 @end
 
 

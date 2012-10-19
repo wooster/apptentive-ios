@@ -47,6 +47,8 @@
 + (BOOL)bundleVersionIsMainVersion;
 + (NSString *)appVersionString;
 + (NSString *)buildNumberString;
+
++ (BOOL)emailAddressIsValid:(NSString *)emailAddress;
 @end
 
 CGRect ATCGRectOfEvenSize(CGRect inRect);

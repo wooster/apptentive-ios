@@ -16,4 +16,5 @@
 }
 - (void)testEvenRect;
 - (void)testDateFormatting;
+- (void)testEmailValidation;
 @end

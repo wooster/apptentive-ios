@@ -71,4 +71,25 @@
 	STAssertTrue([ATUtilities versionString:@"5.0" isLessThanVersionString:@"5.1"], @"Should be less");
 	STAssertTrue([ATUtilities versionString:@"5.0" isLessThanVersionString:@"6.0.1"], @"Should be less");
 }
+
+- (void)testEmailValidation {
+	STAssertTrue([ATUtilities emailAddressIsValid:@"andrew@example.com"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@" andrew+spam@foo.md "], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"a_blah@a.co.uk"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"☃@☃.net"], @"Snowman! Valid!");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"andrew@example.com"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@" foo@bar.com yarg@blah.com"], @"May as well accept multiple");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"Andrew Wooster <andrew@example.com>"], @"Accept contact emails");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"foo/bar=blah@example.com"], @"Accept department emails");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"!hi!%blah@example.com"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"m@example.com"], @"Should be valid");
+	
+	STAssertFalse([ATUtilities emailAddressIsValid:@"blah"], @"Shouldn't be valid");
+	STAssertFalse([ATUtilities emailAddressIsValid:@"andrew@example,com"], @"Shouldn't be valid");
+	STAssertFalse([ATUtilities emailAddressIsValid:@""], @"Shouldn't be valid");
+	STAssertFalse([ATUtilities emailAddressIsValid:@"@"], @"Shouldn't be valid");
+	STAssertFalse([ATUtilities emailAddressIsValid:@".com"], @"Shouldn't be valid");
+	STAssertFalse([ATUtilities emailAddressIsValid:@"\n"], @"Shouldn't be valid");
+	STAssertFalse([ATUtilities emailAddressIsValid:@"foo@yarg"], @"Shouldn't be valid");
+}
 @end
