@@ -83,6 +83,12 @@
 	STAssertTrue([ATUtilities emailAddressIsValid:@"foo/bar=blah@example.com"], @"Accept department emails");
 	STAssertTrue([ATUtilities emailAddressIsValid:@"!hi!%blah@example.com"], @"Should be valid");
 	STAssertTrue([ATUtilities emailAddressIsValid:@"m@example.com"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"\"a@wooster\"@example.org"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"\"a\\wooster\"@example.org"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"\"\"@example.org"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"(comment)wooster(bar)@(comment)google.com(wee)"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"a.wooster@192.168.0.1"], @"Should be valid");
+	STAssertTrue([ATUtilities emailAddressIsValid:@"a.wooster@[IPv6:b1:]"], @"Should be valid");
 	
 	STAssertFalse([ATUtilities emailAddressIsValid:@"blah"], @"Shouldn't be valid");
 	STAssertFalse([ATUtilities emailAddressIsValid:@"andrew@example,com"], @"Shouldn't be valid");
